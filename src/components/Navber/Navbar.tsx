@@ -7,7 +7,7 @@ const Navbar = () => {
     const {user, logOut}=useAuth();
     const handleLogOut=()=>{
         logOut();
-        
+
     }
     return (
         <div className='px-4 py-5  bg-[#1D2A35]'>
@@ -68,7 +68,9 @@ const Navbar = () => {
           <div className='hidden lg:flex '>
           {
             user?<>
+            <Link to="/dashboard" title={user?.displayName} className='btn btn-sm btn-outline text-white mr-3'>Dashboard</Link>
             <button  onClick={handleLogOut} className='btn btn-primary btn-sm'>Logout</button>
+
             </>:<>
             <div className=''>
             <Link  to="/signUp" className='btn btn-outline btn-sm mr-2 text-white'>SignUp</Link>

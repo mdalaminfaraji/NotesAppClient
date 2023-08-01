@@ -1,7 +1,9 @@
 
 import { useForm, Resolver } from 'react-hook-form';
 import useAuth from '../../../Hooks/useAuth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 type FormValues = {
  Name: string;
   email: string;
@@ -24,6 +26,8 @@ const resolver: Resolver<FormValues> = async (values) => {
 
 export default function SignUp() {
     const {user,createUser, updateUserProfile}=useAuth();
+    const navigate=useNavigate();
+   const [axiosSecure]=useAxiosSecure();
   const { register, handleSubmit, formState: { errors } , reset} = useForm<FormValues>({ resolver });
   const onSubmit = handleSubmit((data) => {
     const {Name, email, password}=data;
@@ -33,8 +37,23 @@ export default function SignUp() {
         const loggedUser=result.user;
         console.log(loggedUser);
         updateUserProfile(Name)
-        .then((data:any)=>{
-            console.log(data);
+        .then(()=>{
+            const SaveUserOnDatabase={Name, email, password};
+            axiosSecure.post('/users',SaveUserOnDatabase)
+            .then((data:any)=>{
+                console.log('database', data);
+                if(data.data.insertedId){
+                    reset();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'User created successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                      navigate('/dashboard');
+                }
+            })
         })
     })
    reset();

@@ -10,8 +10,8 @@ const SignIn = () => {
     const [success, setSuccess]=useState('');
     const {signIn, googleSignIn}=useAuth();
     const navigate=useNavigate();
-    const location=useLocation();
-    const from=location.state?.from?.pathname|| '/';
+    // const location=useLocation();
+    // const from=location.state?.from?.pathname|| '/';
 
     const handleLogin=(event:any)=>{
           event.preventDefault();
@@ -29,7 +29,7 @@ const SignIn = () => {
           signIn(email, password)
           .then((result:any)=>{
             const loggedUser=result.user;
-            navigate(from, {replace:true});
+            navigate('/dashboard');
             console.log(loggedUser);
             setSuccess('User login successful');
             setError('');
@@ -45,7 +45,7 @@ const SignIn = () => {
         googleSignIn()
         .then((result:any)=>{
             const loggedUser=result.user;
-            navigate(from, {replace:true});
+            navigate('/dashboard');
             console.log(loggedUser);
         })
         .catch((error:any)=>{
