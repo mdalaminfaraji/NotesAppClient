@@ -8,6 +8,7 @@ import SignUp from "../components/pages/SignUp/SignUp";
 import SignIn from "../components/pages/SignIn/SignIn";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import Notes from "../Layouts/Dashboard/Notes";
+import AddNote from "../Layouts/Dashboard/AddNote";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         {
           path:'/dashboard',
           element:<Notes></Notes>
+        },
+        {
+          path:'addNote',
+          element:<AddNote></AddNote>
         }
       ]
     }
