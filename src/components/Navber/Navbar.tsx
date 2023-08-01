@@ -4,7 +4,11 @@ import { Link, NavLink } from 'react-router-dom'
 import useAuth from '../../Hooks/useAuth';
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const {user}=useAuth();
+    const {user, logOut}=useAuth();
+    const handleLogOut=()=>{
+        logOut();
+        
+    }
     return (
         <div className='px-4 py-5  bg-[#1D2A35]'>
         <div className='relative flex items-center justify-between'>
@@ -64,7 +68,7 @@ const Navbar = () => {
           <div className='hidden lg:flex '>
           {
             user?<>
-            <Link to='/logOut' className='btn btn-primary btn-sm'>Logout</Link>
+            <button  onClick={handleLogOut} className='btn btn-primary btn-sm'>Logout</button>
             </>:<>
             <div className=''>
             <Link  to="/signUp" className='btn btn-outline btn-sm mr-2 text-white'>SignUp</Link>

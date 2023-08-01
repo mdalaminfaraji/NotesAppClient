@@ -1,7 +1,7 @@
 
 import { useForm, Resolver } from 'react-hook-form';
 import useAuth from '../../../Hooks/useAuth';
-
+import { Link } from 'react-router-dom';
 type FormValues = {
  Name: string;
   email: string;
@@ -39,11 +39,12 @@ export default function SignUp() {
     })
    reset();
 });
-console.log(user);
+// console.log(user);
   return (
     <div className='bg-[#193D3D]  h-screen px-2 pt-20'>
+        
         <h1 className='text-center text-white pb-5 text-3xl font-semibold'>Welcome to our SignUp page</h1>
-        <h2 className='text-center text-white pb-5 text-3xl font-semibold'>{user.displayName}</h2>
+        <h2 className='text-center text-white pb-5 text-3xl font-semibold'>{user?.displayName}</h2>
    <form onSubmit={onSubmit} >
    <div className='text-center py-5 text-[#DDDDDD] border  md:w-1/3  mx-auto shadow-lg rounded-md '>
    <div className='px-10'>
@@ -61,6 +62,7 @@ console.log(user);
         <input className='block w-full p-1 text-black rounded-md' type="email" {...register("email")} placeholder='please Enter your Email'/>
       </div>
       <input type="submit" className='btn btn-sm btn-success my-3'/>
+      <p>Already have an account? <span className='text-red-400'><Link to='/signin'>Please Login</Link></span></p>
    </div>
       
       
