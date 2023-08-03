@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from './useAuth';
 
 const axiosSecure:any = axios.create({
-  baseURL: 'http://localhost:5000/', 
+  baseURL: 'https://notes-app-server-ten.vercel.app/', 
 });
 
 const useAxiosSecure = () => {

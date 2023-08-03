@@ -52,18 +52,18 @@ const AllNotes: React.FC<{ allNotes: Note[] }>= ({allNotes}) => {
 }
 console.log(updateData);
 
-const handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e:any) => {
     e.preventDefault();
-    const form=e.target;
-     const title=form?.title.value;
-     const content=form?.content.value;
-     const category=form?.category.value;
-     const photoLink=form?.photoLink.value;
+    const form = e.currentTarget;
+    const title = form.elements.namedItem('title')?.value;
+    const content = form.elements.namedItem('content')?.value;
+    const category = form.elements.namedItem('category')?.value;
+    const photoLink = form.elements.namedItem('photoLink')?.value;
      const updateValue={
         title, content, category, photoLink, email:user?.email
      }
       console.log(updateValue);
-      fetch(`http://localhost:5000/update/${Id}`, {
+      fetch(`https://notes-app-server-ten.vercel.app/update/${Id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       }).then((result) => {
       
            if(result.isConfirmed){
-            fetch(`http://localhost:5000/addNoteDelete/${id}`,{
+            fetch(`https://notes-app-server-ten.vercel.app/addNoteDelete/${id}`,{
                         method:'DELETE',
                     })
                     .then(res=>res.json())

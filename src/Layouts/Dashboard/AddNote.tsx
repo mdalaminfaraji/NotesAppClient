@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useAuth from '../../Hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const categories = [
     'Personal',
@@ -51,9 +52,26 @@ const AddNote = () => {
         try {
           const response = await axiosSecure.post('/addNote', AddNote);
           console.log('Form submitted successfully!', response.data);
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: `Added successfully`,
+            showConfirmButton: false,
+            timer: 1500
+           })
+           resetFormData();
+
         } catch (error) {
           console.error('Error submitting the form:', error);
         }
+      };
+      const resetFormData = () => {
+        setFormData({
+          title: '',
+          content: '',
+          category: '',
+          photoLink: '',
+        });
       };
 
     return (
@@ -75,7 +93,7 @@ const AddNote = () => {
 
       <div>
         <label className='text-xl block font-semibold ms-2'>Category:</label>
-        <select className='text-xl font-semibold ms-2 border-2 rounded-md p-1' name="category" value={formData.category} onChange={handleChange} required>
+        <select className='text-xl text-black font-semibold ms-2 border-2 rounded-md p-1' name="category" value={formData.category} onChange={handleChange} required>
           <option value="">Select a category</option>
           {categories.map((category) => (
             <option key={category} value={category}>
