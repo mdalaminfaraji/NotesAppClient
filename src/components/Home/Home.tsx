@@ -6,7 +6,7 @@ const Home = () => {
    const {user}=useAuth();
     return (
         <div className='bg-color h-screen text-white'>
-            <h1 className='text-center p-2 text-4xl'>The journey of a thousand notes begins with a single thought.</h1>
+            <h1 className='text-center p-2 hidden md:flex md:text-4xl items-center justify-center '>The journey of a thousand notes begins with a single thought.</h1>
             <p className='text-center p-3 text-3xl'>Organize your mind, organize your life.</p>
             <div className='rounded-lg'>
              <Player
@@ -15,7 +15,7 @@ const Home = () => {
             loop 
             autoplay
             style={{ height: '400px', width: '400px' }}
-            speed={1}
+            speed={.5}
             />
             </div>
             <div className=' text-center mt-5'>

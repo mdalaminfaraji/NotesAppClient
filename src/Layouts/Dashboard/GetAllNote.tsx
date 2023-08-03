@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import AllNotes from "./AllNotes";
-import axios from "axios";
-// import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import './Notes.css';
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 type Note = {
     title: string;
     content: string;
@@ -13,6 +12,7 @@ type Note = {
   };
 
 const GetAllNote = () => {
+    const [axiosSecure]=useAxiosSecure();
     const [allNotes, setAllNotes] = useState<Note[]>([]);
     const {user,loading, setLoading}=useAuth();
     const [query, setQuery] = useState('');
@@ -24,7 +24,7 @@ const GetAllNote = () => {
     const handleSearch = async () => {
         
         try {
-          const response = await axios.get(`http://localhost:5000/search?query=${query}`);
+          const response = await axiosSecure.get(`search?query=${query}`);
           const data = response.data;
           setSearchResults(data);
           
@@ -39,8 +39,8 @@ const GetAllNote = () => {
        
       
         const fetchData=async ()=>{
-           const res=await fetch(`http://localhost:5000/getNote/${user?.email}`)
-           const data=await res.json();
+           const res=await axiosSecure.get(`getNote/${user?.email}`)
+           const data=res.data;
            setAllNotes(data);
           
         }

@@ -11,6 +11,8 @@ import Notes from "../Layouts/Dashboard/Notes";
 import AddNote from "../Layouts/Dashboard/AddNote";
 import GetAllNote from "../Layouts/Dashboard/GetAllNote";
 import PrivateRoute from "./PrivateRoute";
+import About from "../components/About/About";
+import Feature from "../components/Features/Feature";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
         {
           path:'/signin',
           element:<SignIn></SignIn>
+        },
+        {
+          path:'/about',
+          element:<About></About>
+        },
+        {
+          path:'/features',
+          element:<Feature></Feature>
         }
       ]
     },

@@ -45,9 +45,9 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to='/shop'
-                aria-label='Shop'
-                title='Shop'
+                to='/features'
+                aria-label='Features'
+                title='Features'
                 className={({ isActive }) => (isActive ? 'active' : 'default')}
               >
                 Features

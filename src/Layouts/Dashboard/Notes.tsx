@@ -10,7 +10,7 @@ const Notes = () => {
             <div className="flex justify-between">
                 <h1 className="font-bold text-4xl ps-10">Hey, {user?.displayName}</h1>
                 <p className="pr-5">
-                    <Link to='/dashboard/addNote' className="inline-flex items-center btn btn-sm btn-success"><FaPlus></FaPlus> New Note</Link>
+                    <Link to='/dashboard/addNote' className=" hidden md:inline-flex items-center btn btn-sm btn-success"><FaPlus></FaPlus> New Note</Link>
                 </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
@@ -25,7 +25,7 @@ const Notes = () => {
         />
 
          </div>
-         <div>
+         <div className="bg-color px-2 h-full py-4">
             <h1 className="text-4xl font-bold">Okay........<br/>
             Let'st start with your first note!
             </h1>

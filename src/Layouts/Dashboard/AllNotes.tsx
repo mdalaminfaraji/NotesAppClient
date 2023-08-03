@@ -140,7 +140,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   console.log(title);
     return (
         <>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 ">
            {
            pagedData.map((notes:any)=><div key={notes._id} className="card  bg-primary text-primary-content mx-5 md:mx-0">
 
