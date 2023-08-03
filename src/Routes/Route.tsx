@@ -9,6 +9,8 @@ import SignIn from "../components/pages/SignIn/SignIn";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import Notes from "../Layouts/Dashboard/Notes";
 import AddNote from "../Layouts/Dashboard/AddNote";
+import GetAllNote from "../Layouts/Dashboard/GetAllNote";
+import PrivateRoute from "./PrivateRoute";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
     },
     {
       path:'dashboard',
-      element:<Dashboard></Dashboard>,
+      element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       errorElement:<ErrorPage></ErrorPage>,
       children:[
         {
@@ -41,6 +43,10 @@ const router = createBrowserRouter([
         {
           path:'addNote',
           element:<AddNote></AddNote>
+        },
+        {
+          path:'allNotes',
+          element:<GetAllNote></GetAllNote>
         }
       ]
     }

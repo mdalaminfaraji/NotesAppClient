@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
-import axios from 'axios';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useAuth from '../../Hooks/useAuth';
 
 const categories = [
     'Personal',
@@ -24,11 +25,14 @@ const categories = [
   };
 
 const AddNote = () => {
+    const [axiosSecure]=useAxiosSecure();
+    const {user}=useAuth();
     const [formData, setFormData] = useState<FormValues>({
         title: '',
         content: '',
         category: '',
         photoLink: '',
+        
       });
 
       const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -38,11 +42,14 @@ const AddNote = () => {
           [name]: value,
         }));
       };
-      console.log(formData);
+     const {title, content, category, photoLink}=formData;
+     const AddNote={
+        title, content, category, photoLink, email:user?.email
+     }
       const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-          const response = await axios.post('/api/create-form', formData);
+          const response = await axiosSecure.post('/addNote', AddNote);
           console.log('Form submitted successfully!', response.data);
         } catch (error) {
           console.error('Error submitting the form:', error);
@@ -53,7 +60,7 @@ const AddNote = () => {
         <div>
             <h1 className='text-center text-3xl font-bold'>Add your Notes</h1>
             <div className="divider">_</div>
-         <div className='grid grid-cols-1 md:grid-cols-2 '>
+         <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
             <div className='border-4 ps-4 pt-2 '>
             <form onSubmit={handleSubmit}>
       <div>
@@ -80,7 +87,7 @@ const AddNote = () => {
 
       <div>
         <label className='text-xl block font-semibold ms-2'>Photo Link (optional):</label>
-        <input className='p-2 m-1 text-black border-2 w-3/4 rounded-lg' type="text" name="photoLink" value={formData.photoLink} onChange={handleChange} />
+        <input placeholder='Enter photoUrl' className='p-2 m-1 text-black border-2 w-3/4 rounded-lg' type="text" name="photoLink" value={formData.photoLink} onChange={handleChange} />
       </div>
 
       <button className='btn btn-sm btn-info text-center my-1 ' type="submit">Submit</button>
