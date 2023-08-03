@@ -222,7 +222,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           </div>
         </>
       ) : null}
-        <div className='w-32 mx-auto mt-5'>
+        <div className='w-32 mx-auto p-5'>
          <ReactPaginate
          className='flex gap-1 '
         previousLabel="Previous"

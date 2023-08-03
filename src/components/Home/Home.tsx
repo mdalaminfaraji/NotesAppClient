@@ -1,7 +1,9 @@
 import { Player } from '@lottiefiles/react-lottie-player';
 import {Link} from 'react-router-dom';
 import './Home.css';
+import useAuth from '../../Hooks/useAuth';
 const Home = () => {
+   const {user}=useAuth();
     return (
         <div className='bg-color h-screen text-white'>
             <h1 className='text-center p-2 text-4xl'>The journey of a thousand notes begins with a single thought.</h1>
@@ -17,7 +19,9 @@ const Home = () => {
             />
             </div>
             <div className=' text-center mt-5'>
-                <Link to='/signup' className='btn  btn-danger'>Please Register </Link>
+                {
+                    user?<Link to='/dashboard/allNotes' className='btn  btn-danger'>Show your Note </Link>:<Link to='/signup' className='btn  btn-danger'>Please Register </Link>
+                }
             </div>
         </div>
     );

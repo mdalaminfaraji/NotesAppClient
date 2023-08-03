@@ -3,7 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import AllNotes from "./AllNotes";
 import axios from "axios";
 // import useAxiosSecure from "../../Hooks/useAxiosSecure";
-
+import './Notes.css';
 type Note = {
     title: string;
     content: string;
@@ -51,7 +51,7 @@ const GetAllNote = () => {
   
 
     return (
-        <div className="mb-10 ">
+        <div className="mb-10    px-5 ">
             <div className=" p-3">
             <input
         type="text" className="border-2 w-1/2 mx-auto block rounded-lg p-2"

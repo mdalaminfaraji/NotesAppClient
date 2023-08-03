@@ -1,5 +1,5 @@
 
-
+import './Notes.css';
 import React, { useState } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
@@ -57,11 +57,11 @@ const AddNote = () => {
       };
 
     return (
-        <div>
-            <h1 className='text-center text-3xl font-bold'>Add your Notes</h1>
-            <div className="divider">_</div>
+        <div className='bg-color h-screen text-white'>
+            <h1 className='text-center text-3xl font-bold p-4'>Add your Notes</h1>
+           
          <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
-            <div className='border-4 ps-4 pt-2 '>
+            <div className='border-4 ps-4 pt-2 mx-5 pb-5 mb-4 '>
             <form onSubmit={handleSubmit}>
       <div>
         <label className='text-xl block font-semibold ms-2'>Note Title</label>
@@ -90,7 +90,7 @@ const AddNote = () => {
         <input placeholder='Enter photoUrl' className='p-2 m-1 text-black border-2 w-3/4 rounded-lg' type="text" name="photoLink" value={formData.photoLink} onChange={handleChange} />
       </div>
 
-      <button className='btn btn-sm btn-info text-center my-1 ' type="submit">Submit</button>
+      <button className='btn btn-sm btn-info text-center my-1 ms-2' type="submit">Submit</button>
     </form>
             </div>
             <div>
