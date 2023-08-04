@@ -1,13 +1,20 @@
 import { Player } from '@lottiefiles/react-lottie-player';
-import {Link} from 'react-router-dom';
+
 import './Home.css';
-import useAuth from '../../Hooks/useAuth';
-const Home = () => {
-   const {user}=useAuth();
+
+import Banner from './Banner';
+import FeaturesSection from './FeaturesSection';
+import Footer from './Footer';
+const Home:React.FC = () => {
+
     return (
-        <div className='bg-color h-screen text-white'>
-            <h1 className='text-center p-2 hidden md:flex md:text-4xl items-center justify-center '>The journey of a thousand notes begins with a single thought.</h1>
-            <p className='text-center p-3 text-3xl'>Organize your mind, organize your life.</p>
+        <div className='bg-color'>
+            <Banner></Banner>
+
+           <div className='bg-color h-screen text-white'>
+            <h1 style={{fontFamily:'Rencho'}}  className='text-center p-2 hidden md:flex md:text-4xl items-center justify-center '>The journey of a thousand notes begins with a single thought.</h1>
+            <p style={{fontFamily:'Rencho'}} className='text-center p-3 text-3xl '>Organize your mind, organize your life.</p>
+           
             <div className='rounded-lg'>
              <Player
             src='https://lottie.host/b6431916-5ff2-4f83-b7f8-ea1968f73a0f/apkp7EYVeT.json'
@@ -18,12 +25,12 @@ const Home = () => {
             speed={.5}
             />
             </div>
-            <div className=' text-center mt-5'>
-                {
-                    user?<Link to='/dashboard/allNotes' className='btn  btn-danger'>Show your Note </Link>:<Link to='/signup' className='btn  btn-danger'>Please Register </Link>
-                }
-            </div>
+            <FeaturesSection></FeaturesSection> 
+            <Footer></Footer>
+        </div> 
+          
         </div>
+       
     );
 };
 
