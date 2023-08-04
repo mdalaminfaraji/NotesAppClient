@@ -5,6 +5,7 @@ import { Player } from '@lottiefiles/react-lottie-player';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const categories = [
     'Personal',
@@ -76,6 +77,10 @@ const AddNote = () => {
 
     return (
         <div className='bg-color h-screen text-white'>
+             <Helmet>
+               <title>Notes | AddNote</title>
+       
+             </Helmet>
             <h1 className='text-center text-3xl font-bold p-4'>Add your Notes</h1>
            
          <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>

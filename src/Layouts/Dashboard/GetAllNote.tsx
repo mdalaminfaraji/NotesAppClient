@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import AllNotes from "./AllNotes";
 import './Notes.css';
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 type Note = {
     title: string;
     content: string;
@@ -52,6 +53,10 @@ const GetAllNote = () => {
 
     return (
         <div className="mb-10    px-5 ">
+            <Helmet>
+               <title>Notes | AllNotes</title>
+       
+             </Helmet>
             <div className=" p-3">
             <input
         type="text" className="border-2 w-1/2 mx-auto block rounded-lg p-2"

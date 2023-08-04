@@ -1,8 +1,13 @@
+import { Helmet } from 'react-helmet-async';
 import './About.css'
 import { Player } from '@lottiefiles/react-lottie-player';
 const About = () => {
   return (
     <div className="h-screen text-[#DDDDDD] mx-auto bg-color">
+         <Helmet>
+               <title>Notes | About</title>
+       
+         </Helmet>
       <h2 className="text-3xl font-bold mb-3 py-4 text-center">About Our Note Organization App</h2>
      <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
      <div className='border mx-5 p-5 rounded-md shadow'>

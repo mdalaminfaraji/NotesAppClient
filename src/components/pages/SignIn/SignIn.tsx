@@ -3,6 +3,7 @@ import { Link,  useNavigate } from 'react-router-dom';
 
 import {  FaGoogle } from "react-icons/fa";
 import useAuth from '../../../Hooks/useAuth';
+import { Helmet } from 'react-helmet-async';
 
 
 const SignIn = () => {
@@ -55,6 +56,10 @@ const SignIn = () => {
 
     return (
         <div className='bg-[#193D3D] h-screen'>
+             <Helmet>
+               <title>Notes | SignIn</title>
+       
+             </Helmet>
          <div className="text-center    pt-12 pb-4">
             <h1 className="text-5xl font-bold text-[#DDDDDD]">Please Login now!</h1>
             <p className='text-red-500 text-center font-bold text-xl'>{error}</p>

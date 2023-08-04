@@ -28,7 +28,8 @@ const FeaturesSection: React.FC = () => {
   return (
     <section className="features-section px-5 bg-color py-8">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold mb-4">Key Features</h2>
+        <h2 className="text-3xl font-bold text-center mb-4">Key Features</h2>
+        <div className="divider text-white text-4xl font-bold">--------</div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
             <div key={index} className="feature-card bg-white p-4 rounded-lg shadow-md flex items-center">

@@ -4,6 +4,7 @@ import useAuth from '../../../Hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 type FormValues = {
  Name: string;
   email: string;
@@ -61,7 +62,10 @@ export default function SignUp() {
 // console.log(user);
   return (
     <div className='bg-[#193D3D]  h-screen px-2 pt-20'>
-        
+         <Helmet>
+               <title>Notes |SignUp</title>
+       
+             </Helmet>
         <h1 className='text-center text-white pb-5 text-3xl font-semibold'>Welcome to our SignUp page</h1>
         <h2 className='text-center text-white pb-5 text-3xl font-semibold'>{user?.displayName}</h2>
    <form onSubmit={onSubmit} >

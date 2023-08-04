@@ -3,6 +3,7 @@ import ReactPaginate from 'react-paginate';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 
+
 type Note = {
   title: string;
   content: string;
@@ -140,6 +141,7 @@ const handleSubmit = async (e:any) => {
   console.log(title);
     return (
         <>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 ">
            {
            pagedData.map((notes:any)=><div key={notes._id} className="card  bg-primary text-primary-content mx-5 md:mx-0">

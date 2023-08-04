@@ -2,11 +2,16 @@
 import { Link, useRouteError } from 'react-router-dom'
 import { Player } from '@lottiefiles/react-lottie-player';
 import { FaArrowLeft} from "react-icons/fa";
+import { Helmet } from 'react-helmet-async';
 
 const ErrorPage = () => {
   const { error, }:any = useRouteError()
   return (
     <section className='flex items-center h-screen p-16 bg-red-100  text-gray-900'>
+       <Helmet>
+               <title>Notes | ErrorPage</title>
+       
+             </Helmet>
       <div className='container flex flex-col items-center justify-center px-5 mx-auto my-8'>
         <Player
          src='https://assets8.lottiefiles.com/packages/lf20_dbj0tjag.json'

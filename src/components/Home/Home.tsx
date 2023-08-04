@@ -5,10 +5,16 @@ import './Home.css';
 import Banner from './Banner';
 import FeaturesSection from './FeaturesSection';
 import Footer from './Footer';
+import HowItWorksSection from './HowItWorkSection';
+import { Helmet } from 'react-helmet-async';
 const Home:React.FC = () => {
 
     return (
         <div className='bg-color'>
+             <Helmet>
+               <title>Notes | Home</title>
+       
+             </Helmet>
             <Banner></Banner>
 
            <div className='bg-color h-screen text-white'>
@@ -26,6 +32,7 @@ const Home:React.FC = () => {
             />
             </div>
             <FeaturesSection></FeaturesSection> 
+            <HowItWorksSection></HowItWorksSection>
             <Footer></Footer>
         </div> 
           
