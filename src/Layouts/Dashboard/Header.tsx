@@ -14,7 +14,10 @@ const Header = () => {
           <Link to="/" className="btn btn-outline text-white btn-sm normal-case text-xl">Home</Link>
         </div>
         <div className="flex-none  gap-2">
+     
+            <Link to='/dashboard' className='btn btn-outline btn-sm text-white'>dashboard</Link>
             <Link to='/dashboard/addNote' className='btn btn-outline btn-sm text-white'>Add Notes</Link>
+            <Link to='/dashboard/Search' className='btn btn-outline btn-sm text-white'>Search Notes</Link>
             
             <Link to='/dashboard/allNotes' className='btn btn-sm btn-info'>All Notes</Link>
           <div className="form-control ">

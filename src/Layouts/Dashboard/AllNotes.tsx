@@ -64,7 +64,7 @@ const handleSubmit = async (e:any) => {
         title, content, category, photoLink, email:user?.email
      }
       console.log(updateValue);
-      fetch(`https://notes-app-server-ten.vercel.app/update/${Id}`, {
+      fetch(`http://localhost:5000/update/${Id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ const handleSubmit = async (e:any) => {
       }).then((result) => {
       
            if(result.isConfirmed){
-            fetch(`https://notes-app-server-ten.vercel.app/addNoteDelete/${id}`,{
+            fetch(`http://localhost:5000/addNoteDelete/${id}`,{
                         method:'DELETE',
                     })
                     .then(res=>res.json())
@@ -144,14 +144,14 @@ const handleSubmit = async (e:any) => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 ">
            {
-           pagedData.map((notes:any)=><div key={notes._id} className="card  bg-primary text-primary-content mx-5 md:mx-0">
+           pagedData.map((notes:any)=><div key={notes._id} className="card  bg-[#DDDDDD]  text-black mx-5 md:mx-0">
 
             <div className="card-body">
               <h2 className="card-title">{notes.title}!</h2>
               <p>{notes.content}</p>
-              <div className="card-actions justify-end">
-              <button onClick={()=>handleUpdate(notes._id)} className="btn ">Update</button>
-                <button onClick={()=>handleDelete(notes._id)} className="btn btn-success">Delete</button>
+              <div className="card-actions justify-end pt-5">
+              <button onClick={()=>handleUpdate(notes._id)} className="btn btn-outline btn-sm">Update</button>
+                <button onClick={()=>handleDelete(notes._id)} className="btn btn-outline btn-sm  btn-secondary">Delete</button>
                
               </div>
             </div>

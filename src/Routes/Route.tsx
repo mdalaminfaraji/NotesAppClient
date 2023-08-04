@@ -13,6 +13,7 @@ import GetAllNote from "../Layouts/Dashboard/GetAllNote";
 import PrivateRoute from "./PrivateRoute";
 import About from "../components/About/About";
 import Feature from "../components/Features/Feature";
+import SearchNote from "../Layouts/Dashboard/SearchNote";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
         {
           path:'allNotes',
           element:<GetAllNote></GetAllNote>
+        },
+        {
+          path:'search',
+          element:<SearchNote></SearchNote>
         }
       ]
     }
