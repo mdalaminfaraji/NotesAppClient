@@ -4,7 +4,6 @@ import 'react-modal-video/css/modal-video.min.css';
 import React, { useState } from 'react';
 import ModalVideo from 'react-modal-video';
 import thumbanil from '../../assets/vidoThumbanil.png'
-
 const HowItWorksSection: React.FC = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
@@ -58,9 +57,9 @@ const HowItWorksSection: React.FC = () => {
 
       {/* Video Modal */}
       <ModalVideo
-        channel="custom"
+        channel='youtube'
         isOpen={isVideoOpen}
-        url="https://youtu.be/GqpaS5xYgpY" // Replace with your actual online video link
+        videoId="GqpaS5xYgpY"  // Replace with your actual online video link
         onClose={handleVideoClose}
       />
     </section>

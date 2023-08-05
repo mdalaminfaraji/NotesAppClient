@@ -28,11 +28,13 @@
     "react-paginate": "^8.2.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.14.2",
+    "react-youtube": "^10.1.0",
     "sort-by": "^1.2.0",
     "styled-components": "^6.0.7",
     "sweetalert2": "^11.7.20"
   },
   "devDependencies": {
+    "@testing-library/react": "^14.0.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-modal-video": "^1.2.0",

@@ -6,7 +6,7 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
-
+import {useNavigate} from 'react-router-dom'
 const categories = [
     'Personal',
     'Work',
@@ -27,6 +27,7 @@ const categories = [
   };
 
 const AddNote = () => {
+    const navigate=useNavigate();
     const [axiosSecure]=useAxiosSecure();
     const {user}=useAuth();
     const [formData, setFormData] = useState<FormValues>({
@@ -61,6 +62,7 @@ const AddNote = () => {
             timer: 1500
            })
            resetFormData();
+           navigate('/dashboard/search');
 
         } catch (error) {
           console.error('Error submitting the form:', error);
@@ -84,21 +86,21 @@ const AddNote = () => {
             <h1 className='text-center text-3xl font-bold p-4'>Add your Notes</h1>
            
          <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
-            <div className='border-4 ps-4 pt-2 mx-5 pb-5 mb-4 '>
+            <div className='border-2 rounded-lg ps-4 pt-2 mx-5 pb-5 mb-4 '>
             <form onSubmit={handleSubmit}>
       <div>
         <label className='text-xl block font-semibold ms-2'>Note Title</label>
-        <input type="text" className='p-2 m-1 text-black border-2 w-3/4 rounded-lg' placeholder='Enter your Note title' name="title" value={formData.title} onChange={handleChange} required />
+        <input type="text" className='p-2 m-1 text-black border-2 w-11/12 rounded-lg' placeholder='Enter your Note title' name="title" value={formData.title} onChange={handleChange} required />
       </div>
 
       <div>
         <label className='text-xl block font-semibold ms-2'>Content:</label>
-        <textarea placeholder='Enter your Content ' className='border-2 w-3/4 rounded-lg text-black p-2 m-1' rows={5} cols={40} name="content" value={formData.content} onChange={handleChange} required />
+        <textarea placeholder='Enter your Content ' className='border-2 w-11/12 rounded-lg text-black p-2 m-1' rows={5} cols={40} name="content" value={formData.content} onChange={handleChange} required />
       </div>
 
       <div>
         <label className='text-xl block font-semibold ms-2'>Category:</label>
-        <select className='text-xl text-black font-semibold ms-2 border-2 rounded-md p-1' name="category" value={formData.category} onChange={handleChange} required>
+        <select className='text-xl text-black font-semibold ms-2 border-2 rounded-md p-1 w-11/12' name="category" value={formData.category} onChange={handleChange} required>
           <option value="">Select a category</option>
           {categories.map((category) => (
             <option key={category} value={category}>
@@ -110,10 +112,10 @@ const AddNote = () => {
 
       <div>
         <label className='text-xl block font-semibold ms-2'>Photo Link (optional):</label>
-        <input placeholder='Enter photoUrl' className='p-2 m-1 text-black border-2 w-3/4 rounded-lg' type="text" name="photoLink" value={formData.photoLink} onChange={handleChange} />
+        <input placeholder='Enter photoUrl' className='p-2 w-11/12 m-1 text-black border-2 rounded-lg' type="text" name="photoLink" value={formData.photoLink} onChange={handleChange} />
       </div>
 
-      <button className='btn btn-sm btn-info text-center my-1 ms-2' type="submit">Submit</button>
+      <button className='btn btn-sm btn-info text-center my-1 w-1/4  block mx-auto ' type="submit">Submit</button>
     </form>
             </div>
             <div>

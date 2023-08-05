@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import AllNotes from "./AllNotes";
 import './Notes.css';
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 type Note = {
     title: string;
@@ -17,10 +18,12 @@ type Note = {
     const [notes, setNotes] = useState<Note[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState<Note[]>([]);
+  
     useEffect(() => {
         // Fetch the user's notes on component mount
         fetchUserNotes();
-      }, []);
+        
+      }, [notes]);
 
       const fetchUserNotes = () => {
         axiosSecure.get(`/api/notes/${user?.email}`)
@@ -34,10 +37,10 @@ type Note = {
       const handleSearch = (event:any) => {
         const { value } = event.target;
         setSearchTerm(value);
+       
         if (value.trim() === '') {
           setSearchResults([]);
         } else {
-          // Make an API call to fetch search results based on title or category
           axiosSecure.get(`/api/search?userEmail=${user?.email}&term=${value}`)
             .then((response:any) => {
               setSearchResults(response.data);
@@ -47,9 +50,15 @@ type Note = {
             });
         }
       };
+     
+     
    
     return (
         <div className="bg-color h-screen ">
+             <Helmet>
+               <title>Notes | AllNotes</title>
+       
+             </Helmet>
         <div className="p-4 ">
         <input
         className="border-2 w-1/2 mx-auto block rounded-lg p-2"
@@ -57,7 +66,9 @@ type Note = {
          value={searchTerm}
          onChange={handleSearch}
          placeholder="Search by title or category and content"
+        
        />
+
         </div>
         <ul className="bg-color px-5">
             

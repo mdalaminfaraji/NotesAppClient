@@ -9,7 +9,6 @@ import SignIn from "../components/pages/SignIn/SignIn";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import Notes from "../Layouts/Dashboard/Notes";
 import AddNote from "../Layouts/Dashboard/AddNote";
-import GetAllNote from "../Layouts/Dashboard/GetAllNote";
 import PrivateRoute from "./PrivateRoute";
 import About from "../components/About/About";
 import Feature from "../components/Features/Feature";
@@ -55,10 +54,7 @@ const router = createBrowserRouter([
           path:'addNote',
           element:<AddNote></AddNote>
         },
-        {
-          path:'allNotes',
-          element:<GetAllNote></GetAllNote>
-        },
+        
         {
           path:'search',
           element:<SearchNote></SearchNote>

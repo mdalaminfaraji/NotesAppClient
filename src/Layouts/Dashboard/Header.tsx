@@ -1,4 +1,4 @@
-import {Link, useNavigate} from 'react-router-dom'
+import {Link,NavLink, useNavigate} from 'react-router-dom'
 import useAuth from '../../Hooks/useAuth';
 const Header = () => {
     const navigate=useNavigate()
@@ -15,16 +15,30 @@ const Header = () => {
         </div>
         <div className="flex-none  gap-2">
      
-            <Link to='/dashboard' className='btn btn-outline btn-sm text-white'>dashboard</Link>
-            <Link to='/dashboard/addNote' className='btn btn-outline btn-sm text-white'>Add Notes</Link>
-            <Link to='/dashboard/Search' className='btn btn-outline btn-sm text-white'>Search Notes</Link>
-            
-            <Link to='/dashboard/allNotes' className='btn btn-sm btn-info'>All Notes</Link>
+
+        
+            <NavLink
+                to='/dashboard/addNote'
+                aria-label='AddNote'
+                title='AddNote'
+                className={({ isActive }) => (isActive ? 'active btn btn-outline btn-sm' : 'default btn btn-outline btn-sm text-white')}
+              >
+                AddNote
+              </NavLink>
+            <NavLink
+                to='/dashboard/Search'
+                aria-label='AllNotes'
+                title='AllNotes'
+                className={({ isActive }) => (isActive ? 'active btn btn-outline btn-sm' : 'default btn btn-outline btn-sm text-white')}
+              >
+                AllNotes
+              </NavLink>
+            {/* <Link to='/dashboard/allNotes' className='btn btn-sm btn-info'>All Notes</Link> */}
           <div className="form-control ">
             <input type="text" placeholder="Search" className="input ps-5 hidden  input-bordered w-24 md:w-96 " />
           </div>
           <div>
-            <button onClick={handleLogOut} className='btn btn-sm'>LogOut</button>
+            <button onClick={handleLogOut} className='btn btn-sm '>LogOut</button>
            </div> 
         </div>
        

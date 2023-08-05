@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
-
+import './pagination.css';
 
 type Note = {
   title: string;
@@ -64,7 +64,7 @@ const handleSubmit = async (e:any) => {
         title, content, category, photoLink, email:user?.email
      }
       console.log(updateValue);
-      fetch(`http://localhost:5000/update/${Id}`, {
+      fetch(`https://notes-app-type-script.vercel.app/update/${Id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ const handleSubmit = async (e:any) => {
       }).then((result) => {
       
            if(result.isConfirmed){
-            fetch(`http://localhost:5000/addNoteDelete/${id}`,{
+            fetch(`https://notes-app-type-script.vercel.app/addNoteDelete/${id}`,{
                         method:'DELETE',
                     })
                     .then(res=>res.json())
@@ -224,18 +224,20 @@ const handleSubmit = async (e:any) => {
           </div>
         </>
       ) : null}
-        <div className='w-32 mx-auto p-5'>
+        <div className='flex items-center justify-center py-5 '>
          <ReactPaginate
-         className='flex gap-1 '
-        previousLabel="Previous"
+         className='flex gap-1 text-white '
+        previousLabel="Previous "
         nextLabel="Next"
         breakLabel="..."
         pageCount={pageCount}
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         onPageChange={handlePageChange}
-        containerClassName="pagination"
-        activeClassName="active"
+        containerClassName="pagination "
+        activeClassName="active btn btn-sm btn-outline"
+        previousClassName=" btn btn-sm btn-primary btn-outline"
+        nextClassName=" btn btn-sm btn-primary btn-outline"
       />
          </div>
 
