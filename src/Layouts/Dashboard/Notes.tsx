@@ -25,11 +25,11 @@ const Notes = () => {
         />
 
          </div>
-         <div className="bg-color px-2 h-full py-4">
+         <div className="bg-color flex  flex-col justify-center px-2 h-full py-4">
             <h1 className="text-4xl font-bold">Okay........<br/>
             Let'st start with your first note!
             </h1>
-            <Link to='/dashboard/addNote' className="underline text-3xl font-semibold">Create one!</Link>
+            <Link to='/dashboard/addNote' className="underline text-3xl text-teal-300   font-semibold">Create one!</Link>
          </div>
 
             </div>
