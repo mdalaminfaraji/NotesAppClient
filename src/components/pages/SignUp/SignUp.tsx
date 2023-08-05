@@ -65,6 +65,14 @@ export default function SignUp() {
             })
         })
     })
+    .catch((error:any)=>{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'User Already exist please signIn',
+            footer: `${error.message}`
+          })
+      })
    reset();
 });
 // console.log(user);

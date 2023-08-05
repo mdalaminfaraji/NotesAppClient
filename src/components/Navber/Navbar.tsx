@@ -10,7 +10,7 @@ const Navbar = () => {
 
     }
     return (
-        <div className='px-4 py-5  bg-[#1D2A35]'>
+        <div className='px-8 py-5  bg-[#1D2A35]'>
         <div className='relative flex items-center justify-between'>
           <Link
             to='/'

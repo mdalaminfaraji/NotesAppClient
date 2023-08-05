@@ -8,7 +8,7 @@ const Header = () => {
       navigate('/');
    }
     return (
-        <div className="navbar bg-[#1D2A35] text-white">
+        <div className="navbar px-8 bg-[#1D2A35] text-white">
         <div className="flex-1">
           {/* <Link to="/" className="btn btn-outline text-white btn-sm mr-1 normal-case text-xl">Notes</Link> */}
           <Link to="/" className="btn btn-outline text-white btn-sm normal-case text-xl">Home</Link>

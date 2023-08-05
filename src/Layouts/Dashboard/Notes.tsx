@@ -13,7 +13,7 @@ const Notes = () => {
                     <Link to='/dashboard/addNote' className=" hidden md:inline-flex items-center btn btn-sm btn-success"><FaPlus></FaPlus> New Note</Link>
                 </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-10 ">
             <div className=" ">
             <Player
          src='https://assets1.lottiefiles.com/packages/lf20_myejiggj.json'

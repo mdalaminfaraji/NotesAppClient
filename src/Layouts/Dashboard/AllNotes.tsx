@@ -163,34 +163,34 @@ const handleSubmit = async (e:any) => {
         {showModal ? (
         <>
           <div className="flex bg-[#193D3D] bg-opacity-80 justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-auto my-6 mx-auto max-w-5xl">
+            <div className="relative w-auto  mx-auto max-w-5xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full h-screen bg-white outline-none focus:outline-none">
-                <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t ">
+                <div className="flex items-start justify-between p-3 border-b border-solid border-gray-300 rounded-t ">
                   <h3 className="text-3xl font-semibold ">update your information</h3>
                   <button
                     className="bg-transparent border-0 text-black float-right"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="text-black opacity-7 h-7 w-7 text-xl block bg-gray-400 py-0 rounded-full">
+                    <span className="text-red-500 w-8 pb-1 bg-opacity-30  text-xl block  bg-black  rounded-full">
                       x
                     </span>
                   </button>
                 </div>
-                <div className="relative p-6 flex-auto  container mx-auto py-8 border-4 px-16  bg-[#193D3D] bg-opacity-100  text-[#DDDDDD]">
+                <div className="relative flex-auto  container mx-auto pt-5 border-4 px-16  bg-[#193D3D] bg-opacity-100  text-[#DDDDDD]">
                 <form onSubmit={handleSubmit}>
       <div>
         <label className='text-xl block font-semibold ms-2'>Note Title</label>
-        <input type="text" className='p-2 m-1 text-black border-2 w-3/4 rounded-lg' placeholder='Enter your Note title' name="title" defaultValue={title}  required />
+        <input type="text" className='p-2 w-full m-1 text-black border-2 rounded-lg' placeholder='Enter your Note title' name="title" defaultValue={title}  required />
       </div>
 
       <div>
         <label className='text-xl block font-semibold ms-2'>Content:</label>
-        <textarea defaultValue={content} placeholder='Enter your Content ' className='border-2 w-3/4 rounded-lg text-black p-2 m-1' rows={5} cols={40} name="content"  required />
+        <textarea defaultValue={content} placeholder='Enter your Content ' className='border-2 w-full rounded-lg text-black p-2 m-1' rows={5} cols={40} name="content"  required />
       </div>
 
       <div>
         <label className='text-xl block font-semibold ms-2'>Category:</label>
-        <select className='text-xl text-black font-semibold ms-2 border-2 rounded-md p-1' name="category" defaultValue={category} required>
+        <select className='text-xl text-black w-full font-semibold ms-2 border-2 rounded-md p-1' name="category" defaultValue={category} required>
           <option   value="">Select a category</option>
           {categories.map((category) => (
             <option key={category} value={category}>
@@ -202,16 +202,16 @@ const handleSubmit = async (e:any) => {
 
       <div>
         <label className='text-xl block font-semibold ms-2'>Photo Link (optional):</label>
-        <input defaultValue={photoLink} placeholder='Enter photoUrl' className='p-2 m-1 text-black border-2 w-3/4 rounded-lg' type="text" name="photoLink" />
+        <input defaultValue={photoLink} placeholder='Enter photoUrl' className='p-2 m-1 w-full text-black border-2  rounded-lg' type="text" name="photoLink" />
       </div>
 
-      <button className='btn btn-sm btn-info text-center my-1 ' type="submit">Submit</button>
+      <button className='btn btn-sm btn-info text-center my-1 block mx-auto' type="submit">Submit</button>
     </form>
             
                 </div>
-                <div className="flex items-center bg-white justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                <div className="flex items-center bg-white justify-end py-2  border-solid border-blueGray-200 rounded-lg">
                   <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                    className="text-red-500 background-transparent font-bold uppercase px-6  text-sm outline-none focus:outline-none mr-1 mb-1"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >

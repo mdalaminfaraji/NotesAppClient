@@ -60,8 +60,8 @@ const SignIn = () => {
                <title>Notes | SignIn</title>
        
              </Helmet>
-         <div className="text-center    pt-12 pb-4">
-            <h1 className="text-5xl font-bold text-[#DDDDDD]">Please Login now!</h1>
+         <div className="text-center  pt-12 pb-4">
+            <h1 className="text-5xl font-bold text-[#DDDDDD]">Please SignIn now!</h1>
             <p className='text-red-500 text-center font-bold text-xl'>{error}</p>
              <p className='text-blue-500 text-center font-bold text-xl'>{success}</p>
           </div>
@@ -69,10 +69,10 @@ const SignIn = () => {
         <div className='bg-[#193D3D] '>
              <div className="mx-auto w-1/2 ">
            
-        <div className="hero-content flex-col grid grid-cols-1 md:grid-cols-2">
+        <div className="hero-content flex-col ">
           
           <div className="card flex-shrink-0 max-w-sm w-full border pb-10  shadow-2xl bg-[#193D3D] ">
-            <form onSubmit={handleLogin} className="card-body">
+            <form onSubmit={handleLogin} className="card-body ">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-[#DDDDDD] text-2xl">Email</span>
@@ -89,18 +89,22 @@ const SignIn = () => {
                 <button className="btn btn-primary">Login</button>
               </div>
             </form>
-            <p className='mb-4 ml-6'>
-            <Link to="/signup" className="label-text-alt link link-hover text-[#DDDDDD]">
+            <div className="text-center text-white mb-3">----OR----</div>
+            <div className='mx-auto '>
+            <button onClick={handleGoogleSignIn} className="btn btn-primary  md:px-20  inline-flex items-center ">
+            <FaGoogle className='text-black md:text-2xl   md:mr-2'></FaGoogle> Google signIn </button>
+            </div>
+           
+            <p className='my-3 '>
+            <Link to="/signup" className="label-text-alt text-center block link link-hover text-[#DDDDDD]">
             Don't have an account? <span className='text-red-500'>Please SignUp</span>
             </Link>
+            
             </p>
             
           </div>
           <div>
-          <div>
-            <button onClick={handleGoogleSignIn} className="btn btn-active btn-primary">
-             <p className='inline-flex items-center'><FaGoogle className='text-black text-2xl mr-2'></FaGoogle> Google signIn</p>  </button>
-            </div>
+          
           </div>
 
         </div>

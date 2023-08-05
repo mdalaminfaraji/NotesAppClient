@@ -18,6 +18,7 @@ const categories = [
     'Ideas',
     'Finance',
     'Quotes',
+    'Others'
   ];
   type FormValues = {
     title: string;
