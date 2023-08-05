@@ -9,7 +9,7 @@ import img4 from '../../assets/notesbanner4.png'
 import React from "react";
 const Banner:React.FC = () => {
     return (
-        <Carousel>
+        <Carousel className="text-center">
                 <div>
                     <img src={img3} />
                     
