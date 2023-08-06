@@ -21,8 +21,8 @@ type Note = {
   
     useEffect(() => {
         // Fetch the user's notes on component mount
-        fetchUserNotes();
-        
+      fetchUserNotes();
+       
       }, [notes]);
 
       const fetchUserNotes = () => {
@@ -70,7 +70,7 @@ type Note = {
        />
 
         </div>
-        <ul className="bg-color px-5">
+        <ul className="bg-color ps-7 md:ps-28 lg:ps-4">
             
           {searchResults.length === 0 ? (
             // Display user's notes by default

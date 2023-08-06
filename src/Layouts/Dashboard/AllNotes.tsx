@@ -3,7 +3,9 @@ import ReactPaginate from 'react-paginate';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import './pagination.css';
-
+import axios from 'axios';
+import { TrashIcon,  PhotoIcon   } from '@heroicons/react/24/solid'
+import { FaEdit } from 'react-icons/fa';
 type Note = {
   title: string;
   content: string;
@@ -28,7 +30,7 @@ const categories = [
 
 
 const AllNotes: React.FC<{ allNotes: Note[] }>= ({allNotes}) => {
-   
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const itemsPerPage = 6; // Set the number of items to display per page
   const pageCount = Math.ceil(allNotes.length / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(0);
@@ -90,7 +92,52 @@ const handleSubmit = async (e:any) => {
      
     setShowModal(false);
   };
+ 
+  const img_hosting_token=import.meta.env.VITE_Image_upload_token;
 
+  const handleImageUpload = async (cardId:string) => {
+ 
+    try {
+      if (!selectedImage) return;
+
+      const formData = new FormData();
+      formData.append('image', selectedImage);
+
+      // Step 5: Upload image to ImageBB
+      const imageBBResponse = await axios.post<{ data: { url: string } }>(
+        'https://api.imgbb.com/1/upload',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          params: {
+            key: `${img_hosting_token}`,
+          },
+        }
+      );
+
+      const imageUrl = imageBBResponse.data.data.url;
+      console.log(imageUrl);
+
+    //   Step 7: Send image URL to backend
+      await axios.post('http://localhost:5000/cards/updateImage', {
+        cardId,
+        imageUrl,
+      });
+
+      alert('Image uploaded successfully!');
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      alert('Error uploading image.');
+    }
+  };
+  
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    setSelectedImage(file || null);
+  };
 
   const handleDelete=(id:any)=>{
 
@@ -138,22 +185,27 @@ const handleSubmit = async (e:any) => {
     setCurrentPage(selectedPage.selected);
   };
   const {title, content, category, photoLink}:any=updateData;
-  console.log(title);
+ 
     return (
         <>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10  ">
            {
-           pagedData.map((notes:any)=><div key={notes._id} className="card  bg-[#DDDDDD]  text-black mx-5 md:mx-0">
-
-            <div className="card-body">
-              <h2 className="card-title">{notes.title}!</h2>
-              <p>{notes.content}</p>
-              <div className="card-actions justify-end pt-5">
-              <button onClick={()=>handleUpdate(notes._id)} className="btn btn-outline btn-sm">Update</button>
-                <button onClick={()=>handleDelete(notes._id)} className="btn btn-outline btn-sm  btn-secondary">Delete</button>
-               
+           pagedData.map((notes:any)=><div key={notes._id} className="card w-96 container  bg-[#DDDDDD] mx-5  text-black md:mx-0">
+              <figure><img src={notes.photoLink} className='object-cover h-48 w-96' alt="Please upload your desired image" /></figure>
+            <div >
+              <h2 className="card-title ps-3">{notes.title}!</h2>
+              <p className='ps-3 text-justify'>{notes.content}</p>
+             <div className=" mb-0">
+             <div className="card-actions justify-center items-center py-3">
+              <button onClick={()=>handleUpdate(notes._id)} className="btn btn-outline  btn-sm"><FaEdit></FaEdit></button>
+                <button onClick={()=>handleDelete(notes._id)} className="btn btn-outline btn-sm  btn-secondary"><TrashIcon className=' h-4 w-4'></TrashIcon></button>
+                <input type="file" accept="image/*" onChange={handleImageChange} className="file-input file-input-bordered file-input-accent file-input-xs w-1/2 max-w-xs" />
+                
+        
+               <button onClick={()=>handleImageUpload(notes._id)} className='btn btn-outline btn-xs btn-danger'><PhotoIcon className='h-4 w-4'></PhotoIcon></button>
               </div>
+             </div>
             </div>
           </div>)
          }
@@ -164,9 +216,9 @@ const handleSubmit = async (e:any) => {
         <>
           <div className="flex bg-[#193D3D] bg-opacity-80 justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto  mx-auto max-w-5xl">
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full h-screen bg-white outline-none focus:outline-none">
-                <div className="flex items-start justify-between p-3 border-b border-solid border-gray-300 rounded-t ">
-                  <h3 className="text-3xl font-semibold ">update your information</h3>
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full  bg-white outline-none focus:outline-none">
+                <div className="flex items-start justify-between p-3 bg-[#193D3D]  border border-solid rounded-t-lg  border-gray-300  ">
+                  <h3 className="text-3xl font-semibold text-white">Update your information</h3>
                   <button
                     className="bg-transparent border-0 text-black float-right"
                     onClick={() => setShowModal(false)}
@@ -176,7 +228,7 @@ const handleSubmit = async (e:any) => {
                     </span>
                   </button>
                 </div>
-                <div className="relative flex-auto  container mx-auto pt-5 border-4 px-16  bg-[#193D3D] bg-opacity-100  text-[#DDDDDD]">
+                <div className="relative flex-auto  container mx-auto pt-5 border rounded-lg px-16  bg-[#193D3D] bg-opacity-100  text-[#DDDDDD]">
                 <form onSubmit={handleSubmit}>
       <div>
         <label className='text-xl block font-semibold ms-2'>Note Title</label>
@@ -209,7 +261,7 @@ const handleSubmit = async (e:any) => {
     </form>
             
                 </div>
-                <div className="flex items-center bg-white justify-end py-2  border-solid border-blueGray-200 rounded-lg">
+                {/* <div className="flex items-center bg-white justify-end py-2  border-solid border-blueGray-200 rounded-lg">
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6  text-sm outline-none focus:outline-none mr-1 mb-1"
                     type="button"
@@ -218,7 +270,7 @@ const handleSubmit = async (e:any) => {
                     Close
                   </button>
  
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -226,7 +278,7 @@ const handleSubmit = async (e:any) => {
       ) : null}
         <div className='flex items-center justify-center py-5 '>
          <ReactPaginate
-         className='flex gap-1 text-white '
+         className='flex gap-1 text-white bottom-0'
         previousLabel="Previous "
         nextLabel="Next"
         breakLabel="..."
