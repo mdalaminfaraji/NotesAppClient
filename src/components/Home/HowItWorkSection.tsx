@@ -18,7 +18,7 @@ const HowItWorksSection: React.FC = () => {
   return (
     <section className="how-it-works-section py-8 bg-color">
       <div className="container mx-auto">
-        <h2 className="text-4xl font-bold mb-4 text-center">How It Works</h2>
+        <h2 className="text-4xl font-bold mb-4 text-center">How Note App Works</h2>
         <div className="divider text-white text-4xl font-bold">--------</div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
           <div>

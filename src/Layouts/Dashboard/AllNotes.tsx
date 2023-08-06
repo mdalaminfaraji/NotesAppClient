@@ -4,8 +4,8 @@ import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import './pagination.css';
 import axios from 'axios';
-import { TrashIcon,  PhotoIcon   } from '@heroicons/react/24/solid'
-import { FaEdit } from 'react-icons/fa';
+import { TrashIcon,  } from '@heroicons/react/24/solid'
+import { FaEdit, FaUpload } from 'react-icons/fa';
 type Note = {
   title: string;
   content: string;
@@ -126,7 +126,13 @@ const handleSubmit = async (e:any) => {
         imageUrl,
       });
 
-      alert('Image uploaded successfully!');
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: `Image uploaded successfully`,
+        showConfirmButton: false,
+        timer: 2000
+       })
     } catch (error) {
       console.error('Error uploading image:', error);
       alert('Error uploading image.');
@@ -185,27 +191,27 @@ const handleSubmit = async (e:any) => {
     setCurrentPage(selectedPage.selected);
   };
   const {title, content, category, photoLink}:any=updateData;
- 
+// 
     return (
         <>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5 ">
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3    gap-5 ">
            {
-           pagedData.map((notes:any)=><div key={notes._id} className="card bg-[#DDDDDD] mx-5  text-black ">
-              <figure><img src={notes.photoLink} className='object-cover h-48 w-full' alt="Please upload your desired image" /></figure>
+           pagedData.map((notes:any)=><div key={notes._id} className="card bg-[#DDDDDD]  mx-5  text-black ">
+              <figure><img src={notes?.photoLink} className='object-cover h-48 w-full' alt="Please upload your desired image" /></figure>
             <div >
-              <div className='overflow-x-auto h-28 pe-2'>
-              <h2 className="card-title  ps-3">{notes.title}!</h2>
-              <p className='ps-3 text-justify'>{notes.content}</p>
+              <div className='overflow-x-auto h-36 pe-2'>
+              <h2 className="card-title  ps-3">{notes?.title}!</h2>
+              <p className='ps-3 text-justify'>{notes?.content}</p>
             </div>
-             <div className="h-20 w-[90%] mx-auto relative ">
+             <div className="h-10 w-[90%] mx-auto relative ">
              <div className="flex absolute bottom-0 gap-1 justify-center items-center py-3">
               <button title='update now' onClick={()=>handleUpdate(notes._id)} className="btn btn-outline  btn-xs"><FaEdit></FaEdit></button>
                 <button title='Delete card' onClick={()=>handleDelete(notes._id)} className="btn btn-outline btn-xs  btn-secondary"><TrashIcon className=' h-4 w-4'></TrashIcon></button>
-                <input type="file" accept="image/*" onChange={handleImageChange} className="file-input file-input-bordered file-input-accent file-input-xs w-3/5  max-w-xs" />
+                <input type="file" title='Choose one image' accept="image/*"  onChange={handleImageChange} className="file-input file-input-bordered file-input-accent file-input-xs w-3/5  max-w-xs" />
                 
         
-               <button title='Upload image' onClick={()=>handleImageUpload(notes._id)} className='btn btn-outline btn-xs btn-danger'><PhotoIcon className='h-4 w-4'></PhotoIcon></button>
+               <button title='Upload image' onClick={()=>handleImageUpload(notes._id)} className='btn btn-outline btn-xs btn-danger'><FaUpload></FaUpload></button>
               </div>
              </div>
             </div>
