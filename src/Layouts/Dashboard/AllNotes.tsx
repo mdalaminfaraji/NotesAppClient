@@ -189,21 +189,23 @@ const handleSubmit = async (e:any) => {
     return (
         <>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10  ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5 ">
            {
-           pagedData.map((notes:any)=><div key={notes._id} className="card w-96 container  bg-[#DDDDDD] mx-5  text-black md:mx-0">
-              <figure><img src={notes.photoLink} className='object-cover h-48 w-96' alt="Please upload your desired image" /></figure>
+           pagedData.map((notes:any)=><div key={notes._id} className="card bg-[#DDDDDD] mx-5  text-black ">
+              <figure><img src={notes.photoLink} className='object-cover h-48 w-full' alt="Please upload your desired image" /></figure>
             <div >
-              <h2 className="card-title ps-3">{notes.title}!</h2>
+              <div className='overflow-x-auto h-28 pe-2'>
+              <h2 className="card-title  ps-3">{notes.title}!</h2>
               <p className='ps-3 text-justify'>{notes.content}</p>
-             <div className=" mb-0">
-             <div className="card-actions justify-center items-center py-3">
-              <button onClick={()=>handleUpdate(notes._id)} className="btn btn-outline  btn-sm"><FaEdit></FaEdit></button>
-                <button onClick={()=>handleDelete(notes._id)} className="btn btn-outline btn-sm  btn-secondary"><TrashIcon className=' h-4 w-4'></TrashIcon></button>
-                <input type="file" accept="image/*" onChange={handleImageChange} className="file-input file-input-bordered file-input-accent file-input-xs w-1/2 max-w-xs" />
+            </div>
+             <div className="h-20 w-[90%] mx-auto relative ">
+             <div className="flex absolute bottom-0 gap-1 justify-center items-center py-3">
+              <button title='update now' onClick={()=>handleUpdate(notes._id)} className="btn btn-outline  btn-xs"><FaEdit></FaEdit></button>
+                <button title='Delete card' onClick={()=>handleDelete(notes._id)} className="btn btn-outline btn-xs  btn-secondary"><TrashIcon className=' h-4 w-4'></TrashIcon></button>
+                <input type="file" accept="image/*" onChange={handleImageChange} className="file-input file-input-bordered file-input-accent file-input-xs w-3/5  max-w-xs" />
                 
         
-               <button onClick={()=>handleImageUpload(notes._id)} className='btn btn-outline btn-xs btn-danger'><PhotoIcon className='h-4 w-4'></PhotoIcon></button>
+               <button title='Upload image' onClick={()=>handleImageUpload(notes._id)} className='btn btn-outline btn-xs btn-danger'><PhotoIcon className='h-4 w-4'></PhotoIcon></button>
               </div>
              </div>
             </div>

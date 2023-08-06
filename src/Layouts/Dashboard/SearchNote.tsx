@@ -70,7 +70,7 @@ type Note = {
        />
 
         </div>
-        <ul className="bg-color ps-7 md:ps-28 lg:ps-4">
+        <ul className="bg-color  ">
             
           {searchResults.length === 0 ? (
             // Display user's notes by default
