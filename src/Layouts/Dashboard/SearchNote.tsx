@@ -80,7 +80,7 @@ type Note = {
         setSelectedCategory(value);
         setSearchTerm('');
         if (value === '') {
-         
+          setSelectedCategory('');
             setSearchResults([]);
           } else {
             const filteredNotes = notes.filter((note) => note.category === value);
@@ -107,11 +107,13 @@ type Note = {
         setSearchTerm(value);
        
         if (value.trim() === '') {
+            setSelectedCategory('');
           setSearchResults([]);
         } else {
           axiosSecure.get(`/api/search?userEmail=${user?.email}&term=${value}`)
             .then((response:any) => {
               setSearchResults(response.data);
+              setSelectedCategory('');
             })
             .catch((error:any) => {
               console.error('Error while searching:', error);
@@ -136,7 +138,7 @@ type Note = {
          type="text"
          value={searchTerm}
          onChange={handleSearch}
-         placeholder="Search by title or category and content"
+         placeholder="Search by title and content"
         
        />
       <div className="">
