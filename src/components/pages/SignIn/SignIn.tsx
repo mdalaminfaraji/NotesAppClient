@@ -1,7 +1,7 @@
 import  {  useState } from 'react';
 import { Link,  useNavigate } from 'react-router-dom';
 
-import {  FaGoogle } from "react-icons/fa";
+import {  FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import useAuth from '../../../Hooks/useAuth';
 import { Helmet } from 'react-helmet-async';
 
@@ -11,6 +11,7 @@ const SignIn = () => {
     const [success, setSuccess]=useState('');
     const {signIn, googleSignIn}=useAuth();
     const navigate=useNavigate();
+    const [showPassword, setShowPassword] = useState<boolean>(false);
     // const location=useLocation();
     // const from=location.state?.from?.pathname|| '/';
 
@@ -53,6 +54,9 @@ const SignIn = () => {
             console.log(error);
         })
     }
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+      };
 
     return (
         <div className='bg-[#193D3D] h-screen'>
@@ -60,7 +64,7 @@ const SignIn = () => {
                <title>Notes | SignIn</title>
        
              </Helmet>
-         <div className="text-center  pt-12 pb-4">
+         <div className="text-center  pt-5 pb-4">
             <h1 className="text-5xl font-bold text-[#DDDDDD]">Please SignIn now!</h1>
             <p className='text-red-500 text-center font-bold text-xl'>{error}</p>
              <p className='text-blue-500 text-center font-bold text-xl'>{success}</p>
@@ -71,25 +75,32 @@ const SignIn = () => {
            
         <div className="hero-content flex-col ">
           
-          <div className="card flex-shrink-0 max-w-sm w-full border pb-10  shadow-2xl bg-[#193D3D] ">
+          <div className="card flex-shrink-0 max-w-sm w-full border shadow-2xl bg-[#193D3D] ">
             <form onSubmit={handleLogin} className="card-body ">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-[#DDDDDD] text-2xl">Email</span>
+                  <span className="label-text  text-[#DDDDDD] text-2xl">Email</span>
                 </label>
-                <input type="email" placeholder="email" name='email' className="input input-bordered" required/>
+                <input type="email" placeholder="email" name='email' className="input  input-bordered" required/>
               </div>
-              <div className="form-control">
+              <div className="form-control relative">
                 <label className="label">
-                  <span className="label-text text-[#DDDDDD] text-2xl">Password</span>
+                  <span className="label-text  text-[#DDDDDD] text-2xl">Password</span>
                 </label>
-                <input type="password" placeholder="password" name='password' className="input input-bordered" required/>
+                <input type={showPassword ? 'text' : 'password'}  placeholder="password" name='password' className="input input-bordered" required/>
+                <p  className=' absolute text-black cursor-pointer right-5 top-16' onClick={togglePasswordVisibility}>
+              {showPassword ? (
+                <FaEye />
+              ) : (
+                <FaEyeSlash />
+              )}
+            </p>
               </div>
-              <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+              <div className="form-control mt-5">
+                <button className="btn btn-primary ">Login</button>
               </div>
             </form>
-            <div className="text-center text-white mb-3">----OR----</div>
+            <div className="text-center text-white">----OR----</div>
             <div className='mx-auto '>
             <button onClick={handleGoogleSignIn} className="btn btn-primary  md:px-20  inline-flex items-center ">
             <FaGoogle className='text-black md:text-2xl   md:mr-2'></FaGoogle> Google signIn </button>

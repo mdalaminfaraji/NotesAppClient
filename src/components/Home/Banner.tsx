@@ -9,20 +9,20 @@ import img4 from '../../assets/notesbanner4.png'
 import React from "react";
 const Banner:React.FC = () => {
     return (
-        <Carousel className="text-center">
-                <div>
-                    <img src={img3} />
+        <Carousel className="">
+                <div  >
+                    <img src={img3}/>
                     
                 </div>
-                <div>
+                <div >
                     <img src={img2} />
                    
                 </div>
-                <div>
+                <div  >
                     <img src={img1} />
                    
                 </div>
-                <div>
+                <div >
                     <img src={img4} />
                    
                 </div>

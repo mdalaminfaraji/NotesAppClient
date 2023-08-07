@@ -159,7 +159,7 @@ const Navbar = () => {
                       </li>
                       <li>
                         <Link
-                          to='/feature'
+                          to='/features'
                           aria-label='Feature'
                           title='Feature'
                           className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
@@ -179,11 +179,11 @@ const Navbar = () => {
                       </li>
                       {
                             user?<>
-                            <Link to='logOut' className='btn btn-primary btn-sm'>Logout</Link>
+                            <button onClick={handleLogOut}  className='btn btn-primary btn-sm'>Logout</button>
                             </>:<>
                             <div className=''>
                             <Link  to="/signUp" className='btn btn-outline btn-sm mr-2'>SignUp</Link>
-                            <Link  to="/signUp" className='btn btn-info btn-sm '>SignIn</Link>
+                            <Link  to="/signIn" className='btn btn-info btn-sm '>SignIn</Link>
                             </div>
                             </>
                         }

@@ -4,6 +4,7 @@ import AllNotes from "./AllNotes";
 import './Notes.css';
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+
 type Note = {
     title: string;
     content: string;
@@ -12,12 +13,15 @@ type Note = {
     email: string;
   };
 
+
 const GetAllNote = () => {
     const [axiosSecure]=useAxiosSecure();
     const [allNotes, setAllNotes] = useState<Note[]>([]);
     const {user,loading, setLoading}=useAuth();
     const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState<Note[]>([]);
+ 
+  
     if(loading){
         return <progress className="progress w-full"></progress>
      }

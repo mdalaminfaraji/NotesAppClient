@@ -198,7 +198,11 @@ const handleSubmit = async (e:any) => {
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3    gap-5 ">
            {
            pagedData.map((notes:any)=><div key={notes._id} className="card bg-[#DDDDDD]  mx-5  text-black ">
-              <figure><img src={notes?.photoLink} className='object-cover h-48 w-full' alt="Please upload your desired image" /></figure>
+             <figure><img src={notes?.photoLink} className='object-cover h-48 w-full' alt="Please upload your desired image" /></figure>
+            
+                
+             
+              
             <div >
               <div className='overflow-x-auto h-36 pe-2'>
               <h2 className="card-title  ps-3">{notes?.title}!</h2>
@@ -222,7 +226,7 @@ const handleSubmit = async (e:any) => {
         </div>
         {showModal ? (
         <>
-          <div className="flex bg-[#193D3D] bg-opacity-80 justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className="flex bg-[#193D3D] bg-opacity-30 justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto  mx-auto max-w-5xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full  bg-white outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-3 bg-[#193D3D]  border border-solid rounded-t-lg  border-gray-300  ">
