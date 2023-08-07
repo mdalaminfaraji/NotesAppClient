@@ -1,7 +1,7 @@
 ## Notes Organization Application
 
-- [## github serverSideLink](https://github.com/mdalaminfaraji/NotesAppServerside)
-- [## Live WebSite Link](https://notesappclient.web.app/)
+- [ github serverSideLink](https://github.com/mdalaminfaraji/NotesAppServerside)
+- [Live WebSite Link](https://notesappclient.web.app/)
 # Used Technology
 - React js
 - TypeScript

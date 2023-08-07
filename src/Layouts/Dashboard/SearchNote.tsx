@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import AllNotes from "./AllNotes";
 import './Notes.css';
@@ -6,6 +6,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import { FaPlus } from "react-icons/fa";
+import useAllNotes from "../../Hooks/useAllNotes";
 const categories = [
     'Personal',
     'Work',
@@ -30,7 +31,8 @@ type Note = {
   const SearchNote:React.FC = () => {
     const [axiosSecure]=useAxiosSecure();
     const {user}=useAuth();
-    const [notes, setNotes] = useState<Note[]>([]);
+    const [notes, refetch]=useAllNotes();
+   
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState<Note[]>([]);
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -39,6 +41,8 @@ type Note = {
       const handleUpdate=()=>{
         setShowModal(true);
       }
+
+     
     const handleSubmit = async (e:any) => {
         e.preventDefault();
         const form = e.currentTarget;
@@ -60,7 +64,7 @@ type Note = {
             timer: 1500
            })
           
-          
+          refetch();
 
         } catch (error) {
           console.error('Error submitting the form:', error);
@@ -70,11 +74,7 @@ type Note = {
         setShowModal(false);
       };
   
-    useEffect(() => {
-        // Fetch the user's notes on component mount
-      fetchUserNotes();
-       
-      }, [notes]);
+  
       const handleCategoryChange = (event:any) => {
         const { value } = event.target;
         setSelectedCategory(value);
@@ -93,33 +93,28 @@ type Note = {
       };
    
 
-      const fetchUserNotes = () => {
-        axiosSecure.get(`/api/notes/${user?.email}`)
-          .then((response:any) => {
-            setNotes(response.data);
-          })
-          .catch((error:any) => {
-            console.error('Error while fetching user notes:', error);
-          });
-      };
-      const handleSearch = (event:any) => {
-        const { value } = event.target;
-        setSearchTerm(value);
-       
-        if (value.trim() === '') {
-            setSelectedCategory('');
-          setSearchResults([]);
-        } else {
-          axiosSecure.get(`/api/search?userEmail=${user?.email}&term=${value}`)
-            .then((response:any) => {
-              setSearchResults(response.data);
-              setSelectedCategory('');
-            })
-            .catch((error:any) => {
-              console.error('Error while searching:', error);
-            });
-        }
-      };
+
+     
+        const handleSearch = (event:any) => {
+            const { value } = event.target;
+            setSearchTerm(value);
+           
+            if (value.trim() === '') {
+                setSelectedCategory('');
+              setSearchResults([]);
+            } else {
+              axiosSecure.get(`/api/search?userEmail=${user?.email}&term=${value}`)
+                .then((response:any) => {
+                  setSearchResults(response.data);
+                  setSelectedCategory('');
+                  
+                })
+                .catch((error:any) => {
+                  console.error('Error while searching:', error);
+                });
+            }
+          };
+  
       const uniqueCategories = new Set();
       notes.forEach(item => {
         uniqueCategories.add(item.category);

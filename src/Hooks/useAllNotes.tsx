@@ -1,22 +1,32 @@
+import useAuth from './useAuth';
+import useAxiosSecure from './useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 
+type Note = {
+  title: string;
+  content: string;
+  category: string;
+  photoLink: string;
+  email: string;
+};
 
-// import useAuth from './useAuth';
-// import useAxiosSecure from './useAxiosSecure';
-// import { useQuery } from '@tanstack/react-query';
-// const useAllNotes = () => {
-//     const {user, loading}=useAuth();
-//     const [axiosSecure]=useAxiosSecure();
-//     const {refetch, data:AllNotes=[]}=useQuery({
-//         queryKey:['AllNotes'],
-//         enabled:!loading,
-//         queryFn: async ()=>{
-//             const res=await axiosSecure(`/getNote/${user?.email}`);
-//             console.log('axios',res);
-//             return res.data;
-//         },
-//     })
-//     return[AllNotes, refetch];
+const useAllNotes = (): [Note[], () => void] => {
+  const { user, loading } = useAuth();
+  const [axiosSecure] = useAxiosSecure();
   
-// };
+  const { refetch, data: notes = [] } = useQuery<Note[]>({
+    queryKey: ['notes'],
+    enabled: !loading,
+    queryFn: async () => {
+      if (user?.email) {
+        const res = await axiosSecure(`/api/notes/${user.email}`);
+        return res.data;
+      }
+      return [];
+    },
+  });
 
-// export default useAllNotes;
+  return [notes, refetch];
+};
+
+export default useAllNotes;

@@ -18,7 +18,7 @@ const Home:React.FC = () => {
              </Helmet>
             <Banner></Banner>
 
-           <div className='bg-color h-screen text-white'>
+           <div className='bg-color h-screen pt-5 text-white'>
             <h1 style={{fontFamily:'Rencho'}}  className='text-center p-2 hidden md:flex md:text-4xl items-center justify-center '>The journey of a thousand notes begins with a single thought.</h1>
             <p style={{fontFamily:'Rencho'}} className='text-center p-3 text-3xl '>Organize your mind, organize your life.</p>
            

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import useAuth from '../../Hooks/useAuth';
+import avater from '../../assets/avater3.png'
 import Swal from 'sweetalert2';
 import './pagination.css';
 import axios from 'axios';
 import { TrashIcon,  } from '@heroicons/react/24/solid'
 import { FaEdit, FaUpload } from 'react-icons/fa';
+import useAllNotes from '../../Hooks/useAllNotes';
 type Note = {
   title: string;
   content: string;
@@ -25,23 +27,27 @@ const categories = [
     'Ideas',
     'Finance',
     'Quotes',
+    'Others'
   ];
 
-
+  const img_hosting_token=import.meta.env.VITE_Image_upload_token;
 
 const AllNotes: React.FC<{ allNotes: Note[] }>= ({allNotes}) => {
-    const [selectedImage, setSelectedImage] = useState<File | null>(null);
-    const itemsPerPage = 6; // Set the number of items to display per page
+   
+    const itemsPerPage = 6; 
   const pageCount = Math.ceil(allNotes.length / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(0);
   const [pagedData, setPagedData] = useState<Note[]>([]);
   const [updateData, setUpdateData]=useState<Note[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [Id, setId]=useState('');
-  
+  const [ , refetch]=useAllNotes();
   const {user}=useAuth();
+ 
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+ 
 
- console.log(AllNotes);
+ 
 
 
   
@@ -89,11 +95,11 @@ const handleSubmit = async (e:any) => {
        
         })
   
-     
+     refetch();
     setShowModal(false);
   };
  
-  const img_hosting_token=import.meta.env.VITE_Image_upload_token;
+ 
 
   const handleImageUpload = async (cardId:string) => {
  
@@ -104,7 +110,7 @@ const handleSubmit = async (e:any) => {
       formData.append('image', selectedImage);
 
       // Step 5: Upload image to ImageBB
-      const imageBBResponse = await axios.post<{ data: { url: string } }>(
+      const imageBBResponse = await axios.post<{ data: { display_url: string } }>(
         'https://api.imgbb.com/1/upload',
         formData,
         {
@@ -117,11 +123,11 @@ const handleSubmit = async (e:any) => {
         }
       );
 
-      const imageUrl = imageBBResponse.data.data.url;
+      const imageUrl = imageBBResponse.data.data.display_url;
       console.log(imageUrl);
 
     //   Step 7: Send image URL to backend
-      await axios.post('http://localhost:5000/cards/updateImage', {
+      await axios.post('https://notes-app-type-script.vercel.app/cards/updateImage', {
         cardId,
         imageUrl,
       });
@@ -133,6 +139,7 @@ const handleSubmit = async (e:any) => {
         showConfirmButton: false,
         timer: 2000
        })
+       refetch();
     } catch (error) {
       console.error('Error uploading image:', error);
       alert('Error uploading image.');
@@ -167,12 +174,13 @@ const handleSubmit = async (e:any) => {
                         if (data.deletedCount>0) {
                             Swal.fire(
                               'Deleted!',
-                              'Your coffee has been deleted.',
+                              'Your Notes has been deleted.',
                               'success'
                             )
                           }
+                        refetch();  
                     });
-                   
+                 
            }
  
         
@@ -186,19 +194,22 @@ const handleSubmit = async (e:any) => {
     const startIndex = currentPage * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     setPagedData(allNotes.slice(startIndex, endIndex));
+    
   }, [allNotes, currentPage]);
   const handlePageChange = (selectedPage: { selected: number }) => {
     setCurrentPage(selectedPage.selected);
   };
   const {title, content, category, photoLink}:any=updateData;
-// 
+//   
     return (
         <>
         
-        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3    gap-5 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5 ">
            {
            pagedData.map((notes:any)=><div key={notes._id} className="card bg-[#DDDDDD]  mx-5  text-black ">
-             <figure><img src={notes?.photoLink} className='object-cover h-48 w-full' alt="Please upload your desired image" /></figure>
+             
+                <figure><img src={notes?.photoLink || avater} className='object-cover h-48 w-full' alt="Please upload your desired image" /></figure>
+             
             
                 
              
