@@ -28,7 +28,7 @@ const resolver: Resolver<FormValues> = async (values) => {
 };
 
 
-export default function SignUp() {
+  const SignUp=()=> {
     const [length, setLength]=useState('')
     const {user,createUser, updateUserProfile,  googleSignIn}=useAuth();
     const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -155,3 +155,4 @@ const togglePasswordVisibility = () => {
  
   );
 }
+export default SignUp

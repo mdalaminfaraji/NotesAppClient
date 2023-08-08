@@ -122,6 +122,7 @@ type Note = {
       const uniqueCategoriesArray = Array.from(uniqueCategories);
     const SeeAllNotes=()=>{
         setSearchResults([]);
+        setSelectedCategory('');
     }
     return (
         <div className="bg-color h-screen ">
@@ -152,7 +153,7 @@ type Note = {
     </div>
             <button onClick={SeeAllNotes} className="btn btn-xs hidden md:flex">
         SeeTotalNotes
-        <div className="badge badge-secondary">+{notes.length}</div>
+        
         </button>
       </div>
         </div>

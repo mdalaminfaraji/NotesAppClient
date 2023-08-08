@@ -1,6 +1,9 @@
 import {Link,NavLink, useNavigate} from 'react-router-dom'
 import useAuth from '../../Hooks/useAuth';
+
+import useAllNotes from '../../Hooks/useAllNotes';
 const Header = () => {
+  const [notes,]=useAllNotes();
     const navigate=useNavigate()
    const {logOut}=useAuth();
    const handleLogOut=()=>{
@@ -31,7 +34,7 @@ const Header = () => {
                 title='AllNotes'
                 className={({ isActive }) => (isActive ? 'active btn btn-outline btn-xs ' : 'default btn btn-xs  md:flex btn-outline  text-white')}
               >
-                AllNotes
+                AllNotes<div className="badge badge-secondary">+{notes.length}</div>
               </NavLink>
             {/* <Link to='/dashboard/allNotes' className='btn btn-sm btn-info'>All Notes</Link> */}
           <div className="form-control ">

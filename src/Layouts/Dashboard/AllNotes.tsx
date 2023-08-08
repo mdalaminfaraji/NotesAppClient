@@ -8,6 +8,7 @@ import axios from 'axios';
 import { TrashIcon,  } from '@heroicons/react/24/solid'
 import { FaEdit, FaUpload } from 'react-icons/fa';
 import useAllNotes from '../../Hooks/useAllNotes';
+
 type Note = {
   title: string;
   content: string;
@@ -32,8 +33,8 @@ const categories = [
 
   const img_hosting_token=import.meta.env.VITE_Image_upload_token;
 
-const AllNotes: React.FC<{ allNotes: Note[] }>= ({allNotes}) => {
-   
+const AllNotes: React.FC<{ allNotes: Note[]}>= ({allNotes}) => {
+   const [, refetch]=useAllNotes();
     const itemsPerPage = 6; 
   const pageCount = Math.ceil(allNotes.length / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(0);
@@ -41,7 +42,7 @@ const AllNotes: React.FC<{ allNotes: Note[] }>= ({allNotes}) => {
   const [updateData, setUpdateData]=useState<Note[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [Id, setId]=useState('');
-  const [ , refetch]=useAllNotes();
+ 
   const {user}=useAuth();
  
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -95,7 +96,7 @@ const handleSubmit = async (e:any) => {
        
         })
   
-     refetch();
+        refetch();
     setShowModal(false);
   };
  
@@ -178,7 +179,7 @@ const handleSubmit = async (e:any) => {
                               'success'
                             )
                           }
-                        refetch();  
+                          refetch();  
                     });
                  
            }

@@ -179,6 +179,7 @@ const Navbar = () => {
                       </li>
                       {
                             user?<>
+                             <Link to="/dashboard" title={user?.displayName} className='btn btn-sm btn-outline text-white mr-3'>Dashboard</Link>
                             <button onClick={handleLogOut}  className='btn btn-primary btn-sm'>Logout</button>
                             </>:<>
                             <div className=''>
