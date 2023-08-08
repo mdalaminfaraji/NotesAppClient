@@ -87,7 +87,7 @@ const AddNote = () => {
             <h1 className='text-center text-3xl font-bold py-5'>Add your Notes</h1>
            
          <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
-            <div className='border-2 rounded-lg ps-4 pt-2 mx-5  mb-0 md:mb-4 '>
+            <div className='border-2 rounded-lg ps-8 py-4 mx-5  mb-0 md:mb-4 '>
             <form onSubmit={handleSubmit}>
       <div>
         <label className='text-xl block font-semibold ms-2'>Note Title</label>

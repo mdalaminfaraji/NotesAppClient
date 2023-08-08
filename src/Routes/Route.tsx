@@ -48,11 +48,11 @@ const router = createBrowserRouter([
       children:[
         {
           path:'/dashboard',
-          element:<Notes></Notes>
+          element:<PrivateRoute><Notes></Notes></PrivateRoute>
         },
         {
           path:'addNote',
-          element:<AddNote></AddNote>
+          element:<PrivateRoute><AddNote></AddNote></PrivateRoute>
         },
         
         {

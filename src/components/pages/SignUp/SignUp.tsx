@@ -34,6 +34,9 @@ const resolver: Resolver<FormValues> = async (values) => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const navigate=useNavigate();
    const [axiosSecure]=useAxiosSecure();
+   
+  
+
   const { register, handleSubmit, formState: { errors } , reset} = useForm<FormValues>({ resolver });
   const onSubmit = handleSubmit((data) => {
     const {Name, email, password}=data;

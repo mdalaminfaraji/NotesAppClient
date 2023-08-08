@@ -31,7 +31,7 @@ const SignIn = () => {
           signIn(email, password)
           .then((result:any)=>{
             const loggedUser=result.user;
-            navigate('/dashboard');
+            navigate('/dashboard/addNote');
             console.log(loggedUser);
             setSuccess('User login successful');
             setError('');
@@ -47,7 +47,7 @@ const SignIn = () => {
         googleSignIn()
         .then((result:any)=>{
             const loggedUser=result.user;
-            navigate('/dashboard');
+            navigate('/dashboard/addNote');
             console.log(loggedUser);
         })
         .catch((error:any)=>{

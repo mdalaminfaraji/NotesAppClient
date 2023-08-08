@@ -149,7 +149,7 @@ type Note = {
           </option>
         ))}
       </select>
-      <button title='Add now' onClick={handleUpdate} className="btn btn-outline mr-3 text-white ms-2  btn-xs"><FaPlus></FaPlus>AddNewNote</button>
+      <button title='Add now' onClick={handleUpdate} className="btn btn-outline mr-3 text-white ms-2  btn-xs"><FaPlus></FaPlus>Add New Note</button>
     </div>
            
       </div>

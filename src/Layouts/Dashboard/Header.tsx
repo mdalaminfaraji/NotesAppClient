@@ -28,7 +28,7 @@ const Header = () => {
               
                 className={({ isActive }) => (isActive ? 'active btn btn-outline   btn-xs' : 'default btn  btn-outline btn-xs text-white')}
               >
-                AddNote
+                Add Note
               </NavLink>
             <NavLink
                 to='/dashboard/Search'
@@ -37,7 +37,7 @@ const Header = () => {
                
                 className={({ isActive }) => (isActive ? 'active btn btn-outline btn-xs ' : 'default btn btn-xs  md:flex btn-outline  text-white')}
               >
-                AllNotes<div className="badge badge-secondary">+{notes.length}</div>
+                All Notes<div className="badge badge-secondary">+{notes.length}</div>
               </NavLink>
             {/* <Link to='/dashboard/allNotes' className='btn btn-sm btn-info'>All Notes</Link> */}
           <div className="form-control ">

@@ -15,7 +15,7 @@ import {
 const queryClient = new QueryClient();
 //  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8
 ReactDOM.createRoot(document.getElementById('root')!).render(
-<div className=''>
+<div className='bg-color'>
 <AuthProvider>
 <HelmetProvider>
 <QueryClientProvider client={queryClient}>
