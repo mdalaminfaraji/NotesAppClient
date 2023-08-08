@@ -120,10 +120,7 @@ type Note = {
         uniqueCategories.add(item.category);
       });
       const uniqueCategoriesArray = Array.from(uniqueCategories);
-    const SeeAllNotes=()=>{
-        setSearchResults([]);
-        setSelectedCategory('');
-    }
+ 
     return (
         <div className="bg-color h-screen ">
              <Helmet>
@@ -139,6 +136,9 @@ type Note = {
          placeholder="Search by title and content"
         
        />
+         {searchResults.length === 0 && searchTerm.trim() !== '' && (
+        <p className="text-white font-bold text-center">No match found</p>
+        )}
       <div className=" flex justify-between">
     <div>
     <select className="rounded-lg  mt-1 ms-3" value={selectedCategory} onChange={handleCategoryChange}>
@@ -151,10 +151,7 @@ type Note = {
       </select>
       <button title='Add now' onClick={handleUpdate} className="btn btn-outline mr-3 text-white ms-2  btn-xs"><FaPlus></FaPlus>AddNewNote</button>
     </div>
-            <button onClick={SeeAllNotes} className="btn btn-xs hidden md:flex">
-        SeeTotalNotes
-        
-        </button>
+           
       </div>
         </div>
         <ul className="bg-color  ">

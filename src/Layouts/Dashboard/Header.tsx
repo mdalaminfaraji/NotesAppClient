@@ -3,13 +3,14 @@ import useAuth from '../../Hooks/useAuth';
 
 import useAllNotes from '../../Hooks/useAllNotes';
 const Header = () => {
-  const [notes,]=useAllNotes();
+  const [notes, ]=useAllNotes();
     const navigate=useNavigate()
    const {logOut}=useAuth();
    const handleLogOut=()=>{
     logOut();
       navigate('/');
    }
+
     return (
         <div className="navbar px-8 bg-[#1D2A35] text-white">
         <div className="flex-1">
@@ -24,6 +25,7 @@ const Header = () => {
                 to='/dashboard/addNote'
                 aria-label='AddNote'
                 title='AddNote'
+              
                 className={({ isActive }) => (isActive ? 'active btn btn-outline   btn-xs' : 'default btn  btn-outline btn-xs text-white')}
               >
                 AddNote
@@ -32,6 +34,7 @@ const Header = () => {
                 to='/dashboard/Search'
                 aria-label='AllNotes'
                 title='AllNotes'
+               
                 className={({ isActive }) => (isActive ? 'active btn btn-outline btn-xs ' : 'default btn btn-xs  md:flex btn-outline  text-white')}
               >
                 AllNotes<div className="badge badge-secondary">+{notes.length}</div>

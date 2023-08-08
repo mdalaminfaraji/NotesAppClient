@@ -28,7 +28,7 @@ const Home:React.FC = () => {
             className="player rounded-2xl " 
             loop 
             autoplay
-            style={{ height: '400px', width: '400px' }}
+            style={{ height: '400px', width: '370px'}}
             speed={.5}
             />
             </div>
